@@ -1,17 +1,19 @@
-Rails Admin Map Field
+Rails Admin Mapbox Field
 =====================
 
-rails_admin_map_field is a gem that works with sferik's **rails_admin** (https://github.com/sferik/rails_admin) to provide an easy to use Google Maps interface for displaying and setting geographic co-ordinates in a model.
+rails_admin_mapbox_field is a gem that works with sferik's **rails_admin** (https://github.com/sferik/rails_admin) to provide an easy to use Mapbox interface for displaying and setting geographic co-ordinates in a model.
 
-Where a latitude and longitude is set on the model, it is indicated by a marker shown on a Google map centered at the marker. The administrator can change the value of these fields by clicking on the desired new location on the map.
+It is heavily inspired by https://github.com/beyondthestory/rails_admin_map_field 
+
+Where a latitude and longitude is set on the model, it is indicated by a marker shown on a Mapbox map centered at the marker. The administrator can change the value of these fields by clicking on the desired new location on the map.
 
 Usage
 =====
 
-rails_admin_map_field expects that the model will have two attributes, one for latitude and one for longitude of the point represented. To enable rails_admin_map_field, add the following to your `Gemfile`:
+rails_admin_mapbox_field expects that the model will have two attributes, one for latitude and one for longitude of the point represented. To enable rails_admin_mapbox_field, add the following to your `Gemfile`:
 
 ```ruby
-gem "rails_admin_map_field", :git => "git://github.com/jasonl/rails_admin_map_field.git"
+gem "rails_admin_mapbox_field""
 ```
 
 Then, add in your `config/initializers/rails_admin.rb` initializer:
@@ -26,7 +28,7 @@ RailsAdmin.config do |config|
 end
 ```
 
-**Note**: The field which is set as a map-type field must be the latitude field, not the longitude. By default, rails_admin_map_field will guess that the longitude field is called "longitude".
+**Note**: The field which is set as a map-type field must be the latitude field, not the longitude. By default, rails_admin_mapbox_field will guess that the longitude field is called "longitude".
 
 Configuration
 =============
@@ -46,7 +48,8 @@ RailsAdmin.config do |config|
     edit do
       field :lat, :map do
         longitude_field :lon
-        google_api_key "a1b2c3d4e5f6deadbeef"
+        mapbox_api_key "a1b2c3d4e5f6deadbeef"
+        mapbox_style "mapbox://styles/ABCDEF"
         default_latitude -34.0  # Sydney, Australia
         default_longitude 151.0
       end
@@ -57,9 +60,9 @@ end
 
 LICENSE
 =======
-rails_admin_map_field is licensed under the MIT license.
+rails_admin_mapbox_field is licensed under the MIT license.
 
-Copyright (C) 2011 by Jason Langenauer
+Copyright (C) 2019 by Tim Schröder
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

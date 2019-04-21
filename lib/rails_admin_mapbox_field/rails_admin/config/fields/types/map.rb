@@ -16,20 +16,25 @@ module RailsAdmin::Config::Fields::Types
       :form_map
     end
 
-    # Google Maps API Key - optional
-    register_instance_option(:google_api_key) do
+    # Mapbox API Key
+    register_instance_option(:mapbox_api_key) do
       nil
+    end
+
+    # Mapbox Style
+    register_instance_option(:mapbox_style) do
+      'mapbox://styles/mapbox/streets-v11'
     end
 
     # Latitude value to display in the map if the latitude attribute is nil
     # (Otherwise the location defaults to (0,0) which is in the Gulf of Guinea
     register_instance_option(:default_latitude) do
-      51.5 # Latitude of London, United Kingdom
+      51.163361 # Mitte Deutschlands https://de.wikipedia.org/wiki/Mittelpunkte_Deutschlands
     end
 
     # Longitude value to display if the longitude attribute is nil
     register_instance_option(:default_longitude) do
-      -0.126 # Longitude of London, United Kingdom
+      10.447683 # Mitte Deutschlands https://de.wikipedia.org/wiki/Mittelpunkte_Deutschlands
     end
 
     # Default zoom level of the map
