@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
 
 
   s.name              = "rails_admin_mapbox_field"
-  s.version           = "0.0.2"
+  s.version           = "0.0.3"
   s.platform          = Gem::Platform::RUBY
   s.authors           = ["Tim Schroeder"]
   s.email             = ["timschroder@gmail.com"]

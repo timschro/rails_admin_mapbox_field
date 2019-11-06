@@ -23,29 +23,36 @@
 %pre#coordinates.coordinates
 
 :javascript
-  var latlng = new mapboxgl.LngLat(#{form.object.send(field.longitude_field) || field.default_longitude}, #{form.object.send(field.name) || field.default_latitude});
-  console.log("LatLng "+latlng);
-  mapboxgl.accessToken = "#{field.mapbox_api_key}";
-  var coordinates = document.getElementById('coordinates');
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: '#{field.mapbox_style}',
-    center: latlng,
-    zoom: 10
-  });
-
-   map.addControl(new mapboxgl.NavigationControl({
-            showCompass: false
-        }
-    ), 'bottom-right');
 
 
+  function checkMapbox() {
+  console.log("check");
 
-  var marker = new mapboxgl.Marker({
-    draggable: true
-  }).setLngLat(latlng).addTo(map);
+    console.log("init mapbox 4");
 
-  function onDragEnd() {
+    var latlng = new mapboxgl.LngLat(#{form.object.send(field.longitude_field) || field.default_longitude}, #{form.object.send(field.name) || field.default_latitude});
+    console.log("LatLng "+latlng);
+    mapboxgl.accessToken = "#{field.mapbox_api_key}";
+    var coordinates = document.getElementById('coordinates');
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: '#{field.mapbox_style}',
+      center: latlng,
+      zoom: 10
+    });
+
+     map.addControl(new mapboxgl.NavigationControl({
+              showCompass: false
+          }
+      ), 'bottom-right');
+
+
+
+    var marker = new mapboxgl.Marker({
+      draggable: true
+    }).setLngLat(latlng).addTo(map);
+
+    function onDragEnd() {
     latlng = marker.getLngLat();
     coordinates.style.display = 'block';
     coordinates.innerHTML = 'Longitude: ' + latlng.lng + '<br />Latitude: ' + latlng.lat;
@@ -61,9 +68,22 @@
     marker.setLngLat(e.lngLat);
   }
 
-  marker.on('dragend', onDragEnd);
 
-  map.on('click', onMapClick);
+
+    marker.on('dragend', onDragEnd);
+
+    map.on('click', onMapClick);
+
+
+
+
+  }
+
+  setTimeout(checkMapbox, 1000);
+
+
+
+
 
 
 = form.send :hidden_field, field.name, :id => field.latitude_dom_name
